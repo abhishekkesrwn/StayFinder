@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-md bg-body sticky-top">
+  <div class="container-fluid">    
+     <div class="navbar-nav">
+        <a class="navbar-brand" href="/listings"><i class="fa-solid fa-hotel fa-lg" style="color: rgb(242, 14, 14);"></i>
+        <a class="nav-link" href="/listings">Explore</a>
+      </div>
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link" href="/listings/new">Add Listing</a>
+        <% if(!currUser){%>
+          <a class="nav-link " href="/signup"><b>Signup</b></a>
+          <a class="nav-link" href="/login"><b>Login</b></a>
+          <% } %>
+            <% if(currUser){%>
+              <a class="nav-link" href="/listings">
+                <%=currUser.username%>
+              </a>
+              
+              <a class="nav-link" href="/logout">Logout</a>
+              <% } %>
+      </div>
+    </div>
+  </div>
+</nav>

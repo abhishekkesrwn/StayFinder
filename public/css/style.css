@@ -1,0 +1,180 @@
+*:not(i):not(img) {
+    margin: 0;
+    padding: 0;
+
+}
+
+body {
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-optical-sizing: auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    flex: 1;
+}
+
+/* nav-bar */
+.navbar-nav {
+    color: black !important;
+}
+
+.navbar {
+    height: 6rem;
+    background-color: #FDFDFD;
+}
+
+/* footer */
+
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 5rem;
+    width: 100%;
+    font-size: 1rem;
+    gap: 1rem;
+    margin: 1rem !important;
+    font-weight: 500;
+}
+
+hr {
+    color: #414141;
+}
+
+.social-media a {
+    text-decoration: none;
+    color: black;
+}
+
+.lan-links {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    color: #000000;
+}
+
+.copyright {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.fa-info-links {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.fa-info-links a {
+    text-decoration: none;
+    color: #222222;
+}
+
+.fa-info-links a:hover {
+    text-decoration: underline;
+}
+
+/* cards */
+
+.listing-wrapper {
+    padding: 2rem 5.5rem;
+}
+
+.allcards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.5rem;
+}
+
+.listing-card {
+    border: none !important;
+
+}
+
+.card-body {
+    align-items: flex-start;
+    padding: 0 !important;
+}
+
+.listing-links {
+    text-decoration: none;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.index-card-text {
+    font-weight: 600;
+    font-size: 1rem;
+    color: black;
+    margin-bottom: 0 !important;
+}
+
+.listing-price {
+    display: flex;
+    align-items: center;
+    font-size: 0.75rem;
+    color: #414141;
+    gap: 0.5rem;
+
+}
+
+.fa-solid {
+    font-size: 0.5rem;
+    color: #414141;
+}
+
+.index-image {
+    width: 11.5rem !important;
+    height: 11rem;
+    border-radius: 1rem;
+}
+
+.card-img-overlay {
+    opacity: 0;
+}
+
+.card-img-overlay:hover {
+    opacity: 0.2;
+    background-color: white;
+}
+
+/* edit */
+.update-btn {
+    background-color: #fe424d !important;
+    border: none !important;
+    color: white !important;
+}
+
+/* show  */
+.show-image {
+    border-radius: 1rem;
+    width: 100%;
+    height: 30vh;
+    object-fit: cover;
+
+}
+
+.show-btns {
+    display: flex;
+    flex-direction: row;
+    margin: 1rem 0 !important;
+    gap: 1rem !important;
+}
+
+.delete-btn {
+    background-color: black !important;
+    color: white !important;
+    border: none;
+}
+
+/* Map */
+#map {
+    height: 400px;
+    width: 60vw;
+}
