@@ -1,352 +1,604 @@
-const sampleListings = [
-  {
-    title: "Cozy Beachfront Cottage",
-    description:
-      "Escape to this charming beachfront cottage for a relaxing getaway. Enjoy stunning ocean views and easy access to the beach.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHRyYXZlbHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
-    },
-    price: 1500,
-    location: "Malibu",
-    country: "United States",
-  },
-  {
-    title: "Modern Loft in Downtown",
-    description:
-      "Stay in the heart of the city in this stylish loft apartment. Perfect for urban explorers!",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHRyYXZlbHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
-    },
-    price: 1200,
-    location: "New York City",
-    country: "United States",
-  },
-  {
-    title: "Mountain Retreat",
-    description:
-      "Unplug and unwind in this peaceful mountain cabin. Surrounded by nature, it's a perfect place to recharge.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8aG90ZWxzfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-    },
-    price: 1000,
-    location: "Aspen",
-    country: "United States",
-  },
-  {
-    title: "Historic Villa in Tuscany",
-    description:
-      "Experience the charm of Tuscany in this beautifully restored villa. Explore the rolling hills and vineyards.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aG90ZWxzfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-    },
-    price: 2500,
-    location: "Florence",
-    country: "Italy",
-  },
-  {
-    title: "Secluded Treehouse Getaway",
-    description:
-      "Live among the treetops in this unique treehouse retreat. A true nature lover's paradise.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGhvdGVsc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
-    },
-    price: 800,
-    location: "Portland",
-    country: "United States",
-  },
-  {
-    title: "Beachfront Paradise",
-    description:
-      "Step out of your door onto the sandy beach. This beachfront condo offers the ultimate relaxation.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGhvdGVsc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
-    },
-    price: 2000,
-    location: "Cancun",
-    country: "Mexico",
-  },
-  {
-    title: "Rustic Cabin by the Lake",
-    description:
-      "Spend your days fishing and kayaking on the serene lake. This cozy cabin is perfect for outdoor enthusiasts.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG1vdW50YWlufGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-    },
-    price: 900,
-    location: "Lake Tahoe",
-    country: "United States",
-  },
-  {
-    title: "Luxury Penthouse with City Views",
-    description:
-      "Indulge in luxury living with panoramic city views from this stunning penthouse apartment.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1622396481328-9b1b78cdd9fd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c2t5JTIwdmFjYXRpb258ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
-    },
-    price: 3500,
-    location: "Los Angeles",
-    country: "United States",
-  },
-  {
-    title: "Ski-In/Ski-Out Chalet",
-    description:
-      "Hit the slopes right from your doorstep in this ski-in/ski-out chalet in the Swiss Alps.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1502784444187-359ac186c5bb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHNreSUyMHZhY2F0aW9ufGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-    },
-    price: 3000,
-    location: "Verbier",
-    country: "Switzerland",
-  },
-  {
-    title: "Safari Lodge in the Serengeti",
-    description:
-      "Experience the thrill of the wild in a comfortable safari lodge. Witness the Great Migration up close.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjl8fG1vdW50YWlufGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-    },
-    price: 4000,
-    location: "Serengeti National Park",
-    country: "Tanzania",
-  },
-  {
-    title: "Historic Canal House",
-    description:
-      "Stay in a piece of history in this beautifully preserved canal house in Amsterdam's iconic district.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2FtcGluZ3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
-    },
-    price: 1800,
-    location: "Amsterdam",
-    country: "Netherlands",
-  },
-  {
-    title: "Private Island Retreat",
-    description:
-      "Have an entire island to yourself for a truly exclusive and unforgettable vacation experience.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1618140052121-39fc6db33972?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bG9kZ2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
-    },
-    price: 10000,
-    location: "Fiji",
-    country: "Fiji",
-  },
-  {
-    title: "Charming Cottage in the Cotswolds",
-    description:
-      "Escape to the picturesque Cotswolds in this quaint and charming cottage with a thatched roof.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1602088113235-229c19758e9f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8YmVhY2glMjB2YWNhdGlvbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
-    },
-    price: 1200,
-    location: "Cotswolds",
-    country: "United Kingdom",
-  },
-  {
-    title: "Historic Brownstone in Boston",
-    description:
-      "Step back in time in this elegant historic brownstone located in the heart of Boston.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1533619239233-6280475a633a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHNreSUyMHZhY2F0aW9ufGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-    },
-    price: 2200,
-    location: "Boston",
-    country: "United States",
-  },
-  {
-    title: "Beachfront Bungalow in Bali",
-    description:
-      "Relax on the sandy shores of Bali in this beautiful beachfront bungalow with a private pool.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1602391833977-358a52198938?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzJ8fGNhbXBpbmd8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
-    },
-    price: 1800,
-    location: "Bali",
-    country: "Indonesia",
-  },
-  {
-    title: "Mountain View Cabin in Banff",
-    description:
-      "Enjoy breathtaking mountain views from this cozy cabin in the Canadian Rockies.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1521401830884-6c03c1c87ebb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGxvZGdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-    },
-    price: 1500,
-    location: "Banff",
-    country: "Canada",
-  },
-  {
-    title: "Art Deco Apartment in Miami",
-    description:
-      "Step into the glamour of the 1920s in this stylish Art Deco apartment in South Beach.",
-    image: {
-      filename: "listingimage",
-      url: "https://plus.unsplash.com/premium_photo-1670963964797-942df1804579?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGxvZGdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-    },
-    price: 1600,
-    location: "Miami",
-    country: "United States",
-  },
-  {
-    title: "Tropical Villa in Phuket",
-    description:
-      "Escape to a tropical paradise in this luxurious villa with a private infinity pool in Phuket.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1470165301023-58dab8118cc9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGxvZGdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-    },
-    price: 3000,
-    location: "Phuket",
-    country: "Thailand",
-  },
-  {
-    title: "Historic Castle in Scotland",
-    description:
-      "Live like royalty in this historic castle in the Scottish Highlands. Explore the rugged beauty of the area.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1585543805890-6051f7829f98?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGJlYWNoJTIwdmFjYXRpb258ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
-    },
-    price: 4000,
-    location: "Scottish Highlands",
-    country: "United Kingdom",
-  },
-  {
-    title: "Desert Oasis in Dubai",
-    description:
-      "Experience luxury in the middle of the desert in this opulent oasis in Dubai with a private pool.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1518684079-3c830dcef090?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZHViYWl8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
-    },
-    price: 5000,
-    location: "Dubai",
-    country: "United Arab Emirates",
-  },
-  {
-    title: "Rustic Log Cabin in Montana",
-    description:
-      "Unplug and unwind in this cozy log cabin surrounded by the natural beauty of Montana.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1586375300773-8384e3e4916f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGxvZGdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-    },
-    price: 1100,
-    location: "Montana",
-    country: "United States",
-  },
-  {
-    title: "Beachfront Villa in Greece",
-    description:
-      "Enjoy the crystal-clear waters of the Mediterranean in this beautiful beachfront villa on a Greek island.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1602343168117-bb8ffe3e2e9f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8dmlsbGF8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
-    },
-    price: 2500,
-    location: "Mykonos",
-    country: "Greece",
-  },
-  {
-    title: "Eco-Friendly Treehouse Retreat",
-    description:
-      "Stay in an eco-friendly treehouse nestled in the forest. It's the perfect escape for nature lovers.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1488462237308-ecaa28b729d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8c2t5JTIwdmFjYXRpb258ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
-    },
-    price: 750,
-    location: "Costa Rica",
-    country: "Costa Rica",
-  },
-  {
-    title: "Historic Cottage in Charleston",
-    description:
-      "Experience the charm of historic Charleston in this beautifully restored cottage with a private garden.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1587381420270-3e1a5b9e6904?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGxvZGdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-    },
-    price: 1600,
-    location: "Charleston",
-    country: "United States",
-  },
-  {
-    title: "Modern Apartment in Tokyo",
-    description:
-      "Explore the vibrant city of Tokyo from this modern and centrally located apartment.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1480796927426-f609979314bd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHRva3lvfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-    },
-    price: 2000,
-    location: "Tokyo",
-    country: "Japan",
-  },
-  {
-    title: "Lakefront Cabin in New Hampshire",
-    description:
-      "Spend your days by the lake in this cozy cabin in the scenic White Mountains of New Hampshire.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1578645510447-e20b4311e3ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDF8fGNhbXBpbmd8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
-    },
-    price: 1200,
-    location: "New Hampshire",
-    country: "United States",
-  },
-  {
-    title: "Luxury Villa in the Maldives",
-    description:
-      "Indulge in luxury in this overwater villa in the Maldives with stunning views of the Indian Ocean.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1439066615861-d1af74d74000?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bGFrZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
-    },
-    price: 6000,
-    location: "Maldives",
-    country: "Maldives",
-  },
-  {
-    title: "Ski Chalet in Aspen",
-    description:
-      "Hit the slopes in style with this luxurious ski chalet in the world-famous Aspen ski resort.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGxha2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
-    },
-    price: 4000,
-    location: "Aspen",
-    country: "United States",
-  },
-  {
-    title: "Secluded Beach House in Costa Rica",
-    description:
-      "Escape to a secluded beach house on the Pacific coast of Costa Rica. Surf, relax, and unwind.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmVhY2glMjBob3VzZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
-    },
-    price: 1800,
-    location: "Costa Rica",
-    country: "Costa Rica",
-  },
-];
 
-module.exports = { data: sampleListings };
+const sampleListing = [
+  {
+    "title": "Luxury Retreat in Jaipur",
+    "description": "Enjoy a memorable stay in Jaipur with thoughtfully designed interiors, comfortable amenities, fast Wi-Fi, and easy access to nearby attractions. Perfect for families, couples, or solo travelers seeking relaxation, local experiences, and a welcoming atmosphere throughout their trip.",
+    "image": {
+      "url": "https://images.pexels.com/photos/19328831/pexels-photo-19328831.jpeg?_gl=1*1eatk5s*_ga*MTk2Njk3NTc5My4xNzgwNzIyOTUy*_ga_8JE65Q40S6*czE3ODQyMjUyODckbzIkZzEkdDE3ODQyMjUzNzEkajQ1JGwwJGgw",
+      "filename": "stayfinder/property-1"
+    },
+    "price": 3867,
+    "location": "Jaipur",
+    "country": "India",
+    "owner": null,
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        75.7873,
+        26.9124
+      ]
+    },
+    "category": "Trending"
+  },
+  {
+    "title": "Cozy Villa in Goa",
+    "description": "Enjoy a memorable stay in Goa with thoughtfully designed interiors, comfortable amenities, fast Wi-Fi, and easy access to nearby attractions. Perfect for families, couples, or solo travelers seeking relaxation, local experiences, and a welcoming atmosphere throughout their trip.",
+    "image": {
+      "url": "https://q-xx.bstatic.com/xdata/images/hotel/max600/843709970.jpg?k=3a0f1ffe54064137f019db15a18c615cde3a4e2c82a939d6098acf9acd771fe4&o=&a=1311119",
+      "filename": "stayfinder/property-2"
+    },
+    "price": 2757,
+    "location": "Goa",
+    "country": "India",
+    "owner": null,
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        73.8278,
+        15.2993
+      ]
+    },
+    "category": "Rooms"
+  },
+  {
+    "title": "Modern Cabin in Manali",
+    "description": "Enjoy a memorable stay in Manali with thoughtfully designed interiors, comfortable amenities, fast Wi-Fi, and easy access to nearby attractions. Perfect for families, couples, or solo travelers seeking relaxation, local experiences, and a welcoming atmosphere throughout their trip.",
+    "image": {
+      "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1159733899276775422/original/ec2da71c-a2cb-418f-8786-c4e44c4df6a8.jpeg",
+      "filename": "stayfinder/property-3"
+    },
+    "price": 2931,
+    "location": "Manali",
+    "country": "India",
+    "owner": null,
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        77.1892,
+        32.2396
+      ]
+    },
+    "category": "Iconic Cities"
+  },
+  {
+    "title": "Scenic Apartment in Udaipur",
+    "description": "Enjoy a memorable stay in Udaipur with thoughtfully designed interiors, comfortable amenities, fast Wi-Fi, and easy access to nearby attractions. Perfect for families, couples, or solo travelers seeking relaxation, local experiences, and a welcoming atmosphere throughout their trip.",
+    "image": {
+      "url": "https://assets.searchabode.com/properties/images/1779778358316-Project-Photo-19-KDMS-Skywalk-Jaipur-5437177_1600_1600.jpg",
+      "filename": "stayfinder/property-4"
+    },
+    "price": 2181,
+    "location": "Udaipur",
+    "country": "India",
+    "owner": null,
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        73.7125,
+        24.5854
+      ]
+    },
+    "category": "Mountains"
+  },
+  {
+    "title": "Elegant Loft in Munnar",
+    "description": "Enjoy a memorable stay in Munnar with thoughtfully designed interiors, comfortable amenities, fast Wi-Fi, and easy access to nearby attractions. Perfect for families, couples, or solo travelers seeking relaxation, local experiences, and a welcoming atmosphere throughout their trip.",
+    "image": {
+      "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKfJm7wZsbcxV37j2W9noi2pZeVjpOeQ19PU8x0wdL63Z0HeYbBSeaTZs3&s=10",
+      "filename": "stayfinder/property-5"
+    },
+    "price": 1215,
+    "location": "Munnar",
+    "country": "India",
+    "owner": null,
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        77.0595,
+        10.0889
+      ]
+    },
+    "category": "Castles"
+  },
+  {
+    "title": "Peaceful Cottage in Aspen",
+    "description": "Enjoy a memorable stay in Aspen with thoughtfully designed interiors, comfortable amenities, fast Wi-Fi, and easy access to nearby attractions. Perfect for families, couples, or solo travelers seeking relaxation, local experiences, and a welcoming atmosphere throughout their trip.",
+    "image": {
+      "url": "https://www.chaletsauquebec.com/_photos/Grand/3485320241030125327255.jpg",
+      "filename": "stayfinder/property-6"
+    },
+    "price": 2305,
+    "location": "Aspen",
+    "country": "USA",
+    "owner": null,
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -106.8175,
+        39.1911
+      ]
+    },
+    "category": "Arctic"
+  },
+  {
+    "title": "Hidden Stay in Miami",
+    "description": "Enjoy a memorable stay in Miami with thoughtfully designed interiors, comfortable amenities, fast Wi-Fi, and easy access to nearby attractions. Perfect for families, couples, or solo travelers seeking relaxation, local experiences, and a welcoming atmosphere throughout their trip.",
+    "image": {
+      "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3Fik008TmN_soBF4BiA8-TBd1petudiZuNgzCKi7m4xANKuHM9CqnnNI&s=10",
+      "filename": "stayfinder/property-7"
+    },
+    "price": 1613,
+    "location": "Miami",
+    "country": "USA",
+    "owner": null,
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -80.1918,
+        25.7617
+      ]
+    },
+    "category": "Camping"
+  },
+  {
+    "title": "Grand Escape in New York",
+    "description": "Enjoy a memorable stay in New York with thoughtfully designed interiors, comfortable amenities, fast Wi-Fi, and easy access to nearby attractions. Perfect for families, couples, or solo travelers seeking relaxation, local experiences, and a welcoming atmosphere throughout their trip.",
+    "image": {
+      "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQM7xOhAYtrA6dvVArIN6NeTa3JKtacCUhoZ4z1yraqx2oMEo0CVvgL1SII&s=10",
+      "filename": "stayfinder/property-8"
+    },
+    "price": 1300,
+    "location": "New York",
+    "country": "USA",
+    "owner": null,
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -74.006,
+        40.7128
+      ]
+    },
+    "category": "Farms"
+  },
+  {
+    "title": "Sunset Haven in Lake Tahoe",
+    "description": "Enjoy a memorable stay in Lake Tahoe with thoughtfully designed interiors, comfortable amenities, fast Wi-Fi, and easy access to nearby attractions. Perfect for families, couples, or solo travelers seeking relaxation, local experiences, and a welcoming atmosphere throughout their trip.",
+    "image": {
+      "url": "https://visitlaketahoe.com/wp-content/uploads/2024/01/TahoeBeachClub1200.jpg",
+      "filename": "stayfinder/property-9"
+    },
+    "price": 1979,
+    "location": "Lake Tahoe",
+    "country": "USA",
+    "owner": null,
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -120.0324,
+        39.0968
+      ]
+    },
+    "category": "Beach"
+  },
+  {
+    "title": "Lakeview Residency in Paris",
+    "description": "Enjoy a memorable stay in Paris with thoughtfully designed interiors, comfortable amenities, fast Wi-Fi, and easy access to nearby attractions. Perfect for families, couples, or solo travelers seeking relaxation, local experiences, and a welcoming atmosphere throughout their trip.",
+    "image": {
+      "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScmcE9ipGJGG1c0V73k3iXJ0Cknky4VSVocJQYl-h-xEfvdwodJ1ioano&s=10",
+      "filename": "stayfinder/property-10"
+    },
+    "price":2331,
+    "location": "Paris",
+    "country": "France",
+    "owner": null,
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        2.3522,
+        48.8566
+      ]
+    },
+    "category": "Luxury"
+  },
+  {
+    "title": "Forest Homestay in Nice",
+    "description": "Enjoy a memorable stay in Nice with thoughtfully designed interiors, comfortable amenities, fast Wi-Fi, and easy access to nearby attractions. Perfect for families, couples, or solo travelers seeking relaxation, local experiences, and a welcoming atmosphere throughout their trip.",
+    "image": {
+      "url": "https://gos3.ibcdn.com/4fe070e7-235f-4363-9cda-12135589ee66.jpg",
+      "filename": "stayfinder/property-11"
+    },
+    "price": 4603,
+    "location": "Nice",
+    "country": "France",
+    "owner": null,
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        7.262,
+        43.7102
+      ]
+    },
+    "category": "Domes"
+  },
+  {
+    "title": "Skyline House in Chamonix",
+    "description": "Enjoy a memorable stay in Chamonix with thoughtfully designed interiors, comfortable amenities, fast Wi-Fi, and easy access to nearby attractions. Perfect for families, couples, or solo travelers seeking relaxation, local experiences, and a welcoming atmosphere throughout their trip.",
+    "image": {
+      "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLjDAA9DMUHJKMX7LUz83DqoUs-YaBDibVO9ek8M5lsag7A0wBocDTnVgp&s=10",
+      "filename": "stayfinder/property-12"
+    },
+    "price": 3818,
+    "location": "Chamonix",
+    "country": "France",
+    "owner": null,
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        6.8694,
+        45.9237
+      ]
+    },
+    "category": "Boats"
+  },
+  {
+    "title": "Ocean Lodge in Venice",
+    "description": "Enjoy a memorable stay in Venice with thoughtfully designed interiors, comfortable amenities, fast Wi-Fi, and easy access to nearby attractions. Perfect for families, couples, or solo travelers seeking relaxation, local experiences, and a welcoming atmosphere throughout their trip.",
+    "image": {
+      "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfg6qfv-cPKcuTZ2vf6sLLO7l886eROmirqsKk3fDEyQkPyWPTGnk-akY&s=10",
+      "filename": "stayfinder/property-13"
+    },
+    "price": 1435,
+    "location": "Venice",
+    "country": "Italy",
+    "owner": null,
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        12.3155,
+        45.4408
+      ]
+    },
+    "category": "Trending"
+  },
+  {
+    "title": "Rustic Nest in Florence",
+    "description": "Enjoy a memorable stay in Florence with thoughtfully designed interiors, comfortable amenities, fast Wi-Fi, and easy access to nearby attractions. Perfect for families, couples, or solo travelers seeking relaxation, local experiences, and a welcoming atmosphere throughout their trip.",
+    "image": {
+      "url": "https://cf.bstatic.com/xdata/images/hotel/max500/700179959.jpg?k=8568e029525ded1a77a0257c8999dfd434fb23408f64b23d097d8c9a83786487&o=&hp=1",
+      "filename": "stayfinder/property-14"
+    },
+    "price": 1412,
+    "location": "Florence",
+    "country": "Italy",
+    "owner": null,
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        11.2558,
+        43.7696
+      ]
+    },
+    "category": "Rooms"
+  },
+  {
+    "title": "Premium Residence in Amalfi",
+    "description": "Enjoy a memorable stay in Amalfi with thoughtfully designed interiors, comfortable amenities, fast Wi-Fi, and easy access to nearby attractions. Perfect for families, couples, or solo travelers seeking relaxation, local experiences, and a welcoming atmosphere throughout their trip.",
+    "image": {
+      "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKHLJnBa5oHRdXAqO3qGqxe4U43Bz6HE2TC_PTJEMtLVVDue1Llu02df8&s=10",
+      "filename": "stayfinder/property-15"
+    },
+    "price": 3034,
+    "location": "Amalfi",
+    "country": "Italy",
+    "owner": null,
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        14.6029,
+        40.6333
+      ]
+    },
+    "category": "Iconic Cities"
+  },
+  {
+    "title": "Royal Hideaway in Kyoto",
+    "description": "Enjoy a memorable stay in Kyoto with thoughtfully designed interiors, comfortable amenities, fast Wi-Fi, and easy access to nearby attractions. Perfect for families, couples, or solo travelers seeking relaxation, local experiences, and a welcoming atmosphere throughout their trip.",
+    "image": {
+      "url": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/6e/2c/2b/pool-at-royal-hideaway.jpg?w=700&h=-1&s=1",
+      "filename": "stayfinder/property-16"
+    },
+    "price": 3482,
+    "location": "Kyoto",
+    "country": "Japan",
+    "owner": null,
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        135.7681,
+        35.0116
+      ]
+    },
+    "category": "Mountains"
+  },
+  {
+    "title": "Charming Palace in Hakone",
+    "description": "Enjoy a memorable stay in Hakone with thoughtfully designed interiors, comfortable amenities, fast Wi-Fi, and easy access to nearby attractions. Perfect for families, couples, or solo travelers seeking relaxation, local experiences, and a welcoming atmosphere throughout their trip.",
+    "image": {
+      "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzN55NDMzB_o59CMfwh--eHNTsF5Pg2Xi25Un_k0GmWeO1FYZUZQUgQa4&s=10",
+      "filename": "stayfinder/property-17"
+    },
+    "price": 2037,
+    "location": "Hakone",
+    "country": "Japan",
+    "owner": null,
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        139.1069,
+        35.2323
+      ]
+    },
+    "category": "Castles"
+  },
+  {
+    "title": "Serene Suite in Sapporo",
+    "description": "Enjoy a memorable stay in Sapporo with thoughtfully designed interiors, comfortable amenities, fast Wi-Fi, and easy access to nearby attractions. Perfect for families, couples, or solo travelers seeking relaxation, local experiences, and a welcoming atmosphere throughout their trip.",
+    "image": {
+      "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8B0c1qvqR2Iv7HXe5iy7sVQbFZdyMIY7SA16vSNR3vY981k9oHh4XBvWn&s=10",
+      "filename": "stayfinder/property-18"
+    },
+    "price": 2643,
+    "location": "Sapporo",
+    "country": "Japan",
+    "owner": null,
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        141.3545,
+        43.0618
+      ]
+    },
+    "category": "Arctic"
+  },
+  {
+    "title": "Cliffside Bungalow in Zermatt",
+    "description": "Enjoy a memorable stay in Zermatt with thoughtfully designed interiors, comfortable amenities, fast Wi-Fi, and easy access to nearby attractions. Perfect for families, couples, or solo travelers seeking relaxation, local experiences, and a welcoming atmosphere throughout their trip.",
+    "image": {
+      "url": "https://a0.muscache.com/im/pictures/miso/Hosting-756570625846049495/original/d953cb24-47c6-4904-95d8-0814326d46d1.jpeg?im_w=720",
+      "filename": "stayfinder/property-19"
+    },
+    "price": 1600,
+    "location": "Zermatt",
+    "country": "Switzerland",
+    "owner": null,
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        7.7491,
+        46.0207
+      ]
+    },
+    "category": "Camping"
+  },
+  {
+    "title": "Heritage Dome in Interlaken",
+    "description": "Enjoy a memorable stay in Interlaken with thoughtfully designed interiors, comfortable amenities, fast Wi-Fi, and easy access to nearby attractions. Perfect for families, couples, or solo travelers seeking relaxation, local experiences, and a welcoming atmosphere throughout their trip.",
+    "image": {
+      "url": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/09/49/26/1b/photo2jpg.jpg?w=900&h=500&s=1",
+      "filename": "stayfinder/property-20"
+    },
+    "price": 2608,
+    "location": "Interlaken",
+    "country": "Switzerland",
+    "owner": null,
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        7.8632,
+        46.6863
+      ]
+    },
+    "category": "Farms"
+  },
+  {
+    "title": "Panorama Retreat in Queenstown",
+    "description": "Enjoy a memorable stay in Queenstown with thoughtfully designed interiors, comfortable amenities, fast Wi-Fi, and easy access to nearby attractions. Perfect for families, couples, or solo travelers seeking relaxation, local experiences, and a welcoming atmosphere throughout their trip.",
+    "image": {
+      "url": "https://cf.bstatic.com/xdata/images/hotel/max1024x768/568748769.jpg?k=cdf243aa2bb2ed73b10daeff0bb0781531b0bd05af38dac778433cc83e6c5513&o=",
+      "filename": "stayfinder/property-21"
+    },
+    "price": 3477,
+    "location": "Queenstown",
+    "country": "New Zealand",
+    "owner": null,
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        168.6626,
+        -45.0312
+      ]
+    },
+    "category": "Beach"
+  },
+  {
+    "title": "Alpine Villa in Rotorua",
+    "description": "Enjoy a memorable stay in Rotorua with thoughtfully designed interiors, comfortable amenities, fast Wi-Fi, and easy access to nearby attractions. Perfect for families, couples, or solo travelers seeking relaxation, local experiences, and a welcoming atmosphere throughout their trip.",
+    "image": {
+      "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNC9zgRr4-sgVHZhjYxf-xl2kDUiNR-knT_bBZvM2LioYaB6VygZpnlUSL&s=10",
+      "filename": "stayfinder/property-22"
+    },
+    "price": 1816,
+    "location": "Rotorua",
+    "country": "New Zealand",
+    "owner": null,
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        176.2497,
+        -38.1368
+      ]
+    },
+    "category": "Luxury"
+  },
+  {
+    "title": "Seaside Cabin in Sydney",
+    "description": "Enjoy a memorable stay in Sydney with thoughtfully designed interiors, comfortable amenities, fast Wi-Fi, and easy access to nearby attractions. Perfect for families, couples, or solo travelers seeking relaxation, local experiences, and a welcoming atmosphere throughout their trip.",
+    "image": {
+      "url": "https://www.greengetaways.com.au/wp-content/uploads/2020/10/Pebbly-Beach-cabin.jpg",
+      "filename": "stayfinder/property-23"
+    },
+    "price": 2886,
+    "location": "Sydney",
+    "country": "Australia",
+    "owner": null,
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        151.2093,
+        -33.8688
+      ]
+    },
+    "category": "Domes"
+  },
+  {
+    "title": "Garden Apartment in Byron Bay",
+    "description": "Enjoy a memorable stay in Byron Bay with thoughtfully designed interiors, comfortable amenities, fast Wi-Fi, and easy access to nearby attractions. Perfect for families, couples, or solo travelers seeking relaxation, local experiences, and a welcoming atmosphere throughout their trip.",
+    "image": {
+      "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTy3xXgGcobBcYMuDBYQaUn-Jl8x9At8jOs8ROwLN25077RXb2Aww9LUUI&s=10",
+      "filename": "stayfinder/property-24"
+    },
+    "price": 2774,
+    "location": "Byron Bay",
+    "country": "Australia",
+    "owner": null,
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        153.602,
+        -28.6474
+      ]
+    },
+    "category": "Boats"
+  },
+  {
+    "title": "Urban Loft in Banff",
+    "description": "Enjoy a memorable stay in Banff with thoughtfully designed interiors, comfortable amenities, fast Wi-Fi, and easy access to nearby attractions. Perfect for families, couples, or solo travelers seeking relaxation, local experiences, and a welcoming atmosphere throughout their trip.",
+    "image": {
+      "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUZOu7cbZQLAVzaV13dEBg9Zd3mcC0-nn2NNbFFpp2dkA5nx4iiA-41Xt2&s=10",
+      "filename": "stayfinder/property-25"
+    },
+    "price": 1739,
+    "location": "Banff",
+    "country": "Canada",
+    "owner": null,
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -115.5708,
+        51.1784
+      ]
+    },
+    "category": "Trending"
+  },
+  {
+    "title": "Countryside Cottage in Vancouver",
+    "description": "Enjoy a memorable stay in Vancouver with thoughtfully designed interiors, comfortable amenities, fast Wi-Fi, and easy access to nearby attractions. Perfect for families, couples, or solo travelers seeking relaxation, local experiences, and a welcoming atmosphere throughout their trip.",
+    "image": {
+      "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGmHtxblud1aC13PblHyvNc-lrwGLsgwKVwmOdhetcjw&s=10",
+      "filename": "stayfinder/property-26"
+    },
+    "price": 3258,
+    "location": "Vancouver",
+    "country": "Canada",
+    "owner": null,
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -123.1207,
+        49.2827
+      ]
+    },
+    "category": "Rooms"
+  },
+  {
+    "title": "Snow Stay in Troms",
+    "description": "Enjoy a memorable stay in Troms\u00f8 with thoughtfully designed interiors, comfortable amenities, fast Wi-Fi, and easy access to nearby attractions. Perfect for families, couples, or solo travelers seeking relaxation, local experiences, and a welcoming atmosphere throughout their trip.",
+    "image": {
+      "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-rcLSEQ8fG-fYIQ4okyQA5_Fv3IUNvEs_iW4yGgIYIw&s=10",
+      "filename": "stayfinder/property-27"
+    },
+    "price": 9116,
+    "location": "Troms\u00f8",
+    "country": "Norway",
+    "owner": null,
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        18.9553,
+        69.6492
+      ]
+    },
+    "category": "Iconic Cities"
+  },
+  {
+    "title": "Riverside Escape in Reykjav",
+    "description": "Enjoy a memorable stay in Reykjav\u00edk with thoughtfully designed interiors, comfortable amenities, fast Wi-Fi, and easy access to nearby attractions. Perfect for families, couples, or solo travelers seeking relaxation, local experiences, and a welcoming atmosphere throughout their trip.",
+    "image": {
+      "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1472482522272851343/original/e79f20ba-ac88-40dc-8e38-1e61c43ad122.jpeg?im_w=720",
+      "filename": "stayfinder/property-28"
+    },
+    "price": 5774,
+    "location": "Reykjav\u00edk",
+    "country": "Iceland",
+    "owner": null,
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -21.9426,
+        64.1466
+      ]
+    },
+    "category": "Mountains"
+  },
+  {
+    "title": "Golden Haven in Santorini",
+    "description": "Enjoy a memorable stay in Santorini with thoughtfully designed interiors, comfortable amenities, fast Wi-Fi, and easy access to nearby attractions. Perfect for families, couples, or solo travelers seeking relaxation, local experiences, and a welcoming atmosphere throughout their trip.",
+    "image": {
+      "url": "https://www.antoperla.com/blog/user/pages/01.home/23.santorini-photos/oia-santorini-photos-antoperla-luxury-hotel-spa02.jpg",
+      "filename": "stayfinder/property-29"
+    },
+    "price": 2429,
+    "location": "Santorini",
+    "country": "Greece",
+    "owner": null,
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        25.4615,
+        36.3932
+      ]
+    },
+    "category": "Castles"
+  },
+  {
+    "title": "Hilltop Residency in Athens",
+    "description": "Enjoy a memorable stay in Athens with thoughtfully designed interiors, comfortable amenities, fast Wi-Fi, and easy access to nearby attractions. Perfect for families, couples, or solo travelers seeking relaxation, local experiences, and a welcoming atmosphere throughout their trip.",
+    "image": {
+      "url": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/18/5b/2f/f0/central-athens-hotel.jpg?w=900&h=-1&s=1",
+      "filename": "stayfinder/property-30"
+    },
+    "price": 3027,
+    "location": "Athens",
+    "country": "Greece",
+    "owner": null,
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        23.7275,
+        37.9838
+      ]
+    },
+    "category": "Arctic"
+  }
+]
+module.exports = sampleListing
