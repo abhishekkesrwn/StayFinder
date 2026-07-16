@@ -88,8 +88,8 @@ main().then(
         (err) => console.log("error in connection to database"))
 //main function
 async function main() {
-    await mongoose.connect(localMongoURL);
-    // await mongoose.connect(dbURL)
+    // await mongoose.connect(localMongoURL);
+    await mongoose.connect(dbURL)
 }
 
 
