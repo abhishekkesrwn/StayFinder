@@ -5,7 +5,6 @@ const map = new mapboxgl.Map({
     zoom: 9 // starting zoom
 });
 
-console.log(mapToken)
 const marker1 = new mapboxgl.Marker({ color: "red" })
     .setLngLat( coordinates.length ? coordinates : [77.2090,28.6139])
     .addTo(map);

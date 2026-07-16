@@ -32,8 +32,8 @@ const listingRoute = require("./routes/listing.js")
 const reviewRoute = require("./routes/reviews.js")
 const userRoute = require("./routes/user.js")
 const dbURL = process.env.ATLASDB_URL;
+const localMongoURL = "mongodb://127.0.0.1:27017/wanderlust";
 
-//configurations
 const store = MongoStore.create({
     mongoUrl : dbURL,
     crypto :{
@@ -88,9 +88,8 @@ main().then(
         (err) => console.log("error in connection to database"))
 //main function
 async function main() {
-    // await mongoose.connect("mongodb://127.0.0.1:27017/wanderlust")
-    console.log(dbURL)
-    await mongoose.connect(dbURL)
+    await mongoose.connect(localMongoURL);
+    // await mongoose.connect(dbURL)
 }
 
 
@@ -112,8 +111,12 @@ app.use((req, res, next) => {
     console.log(req.method, req.originalUrl);
     next();
 });
-//for all non existing route
 
+//home route
+app.get("/" , (req,res)=>{
+    res.redirect("/listings");
+    //for all non existing route
+})
 app.all("*", (req, res, next) => {
     next(new ExpressError(404, "Page not found!"))
 })
